@@ -4,8 +4,5 @@ while True:
 	if name == 'q': # quit
 		break
 	price = input("請輸入商品價格:")
-	p = []
-	p.append(name)
-	p.append(price)
-	products.append(p)
+	products.append([name, price]) # products[0][0] = products清單中第一個 index 中的第一個 index
 print(products)
