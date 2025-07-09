@@ -1,4 +1,11 @@
 products = []
+with open("products.csv", "r", encoding = "utf-8") as f:
+	for line in f:
+		if "商品, 價格" in line:
+			continue
+		name, price = line.strip().split(",")
+		products.append([name, price])
+print(products)
 while True:
 	name = input('請輸入商品名稱:')
 	if name == 'q': # quit
@@ -9,10 +16,11 @@ while True:
 print(products)
 for p in products:
 	print(p[0], "的價格是", p[1])
-with open('products.txt', 'w', encoding = 'utf-8') as f: # 使用utf-8(最好用的，有支援全語言)來編碼
-	f.write("商品, 價格\n0") # 寫入和讀取時會出現編碼(encoding)問題
+with open('products.csv', 'w', encoding = 'utf-8') as f: # 使用utf-8(最好用的，有支援全語言)來編碼
+	f.write("商品, 價格\n") # 寫入和讀取時會出現編碼(encoding)問題
 	for p in products:
 		f.write(str(p[0]) + ',' + str(p[1]) + '\n')
 # 但如果要用excel打開就會有錯誤，因為excel的編碼不是用utf-8，所以要去[ 資料 -> 取得外部資料 -> 從文字檔]
 # c記得delimiter(分隔號)要使用comma
 # add header 增加欄位名稱
+# 
